@@ -49,7 +49,7 @@ def apriori(filename, min_support):
     for itemset, count in frequent_itemsets.items():
         print(f"Frequent Itemset: {itemset}, Support Count: {count}")
 
-# Example usage
+# Run the Algorithm
 if __name__ == "__main__":
     try:
         myapriori_filename = "transactions.txt"
