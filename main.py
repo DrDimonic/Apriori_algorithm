@@ -52,7 +52,6 @@ def apriori(filename, min_support):
 # Example usage
 if __name__ == "__main__":
     try:
-
         myapriori_filename = "transactions.txt"
         min_support = float(input("Enter the minimum support percentage: "))
         apriori(myapriori_filename, min_support)
