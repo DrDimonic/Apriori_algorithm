@@ -11,6 +11,8 @@ def apriori(filename, min_support):
 
     total_transactions = len(transactions)
 
+    print(f"Processing {filename} with minimum support {min_support}%")
+
     # Step 2: Calculate minimum support count
     min_support_count = (min_support / 100) * total_transactions
 
@@ -49,7 +51,8 @@ def apriori(filename, min_support):
 
 # Example usage
 if __name__ == "__main__":
-    # Adjust filename and minimal support level
+
+    myapriori_filename = "transactions.txt"
     min_support = float(input("Enter the minimum support percentage: "))
     apriori('transactions.txt', min_support)
 
