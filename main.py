@@ -57,6 +57,6 @@ if __name__ == "__main__":
         apriori(myapriori_filename, min_support)
 
     except ValueError as e:
-        print(f"Invalid input for minimum support: {e}")
+        print(f"Invalid input for minimum support: {e}") 
 
 
