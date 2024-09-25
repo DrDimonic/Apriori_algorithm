@@ -1,4 +1,5 @@
 Apriori Algorithm Pseudo code
+Dominic Cork
 
 Input: 
   filename: the name of the transaction file
