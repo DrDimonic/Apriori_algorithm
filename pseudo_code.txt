@@ -48,4 +48,4 @@ Apriori Algorithm Pseudo code
         - Add Lk to frequent_itemsets
         - Increment k by 1
 
-    7. Output all frequent itemsets in frequent_itemsets
+    7. Output all frequent itemsets in frequent_itemsets 
