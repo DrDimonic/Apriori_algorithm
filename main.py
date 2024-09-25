@@ -50,4 +50,4 @@ def apriori(filename, min_support):
 # Example usage
 if __name__ == "__main__":
     # Adjust filename and minimal support level
-    apriori('transactions.txt', 10)
+    apriori('transactions.txt', 10) 
