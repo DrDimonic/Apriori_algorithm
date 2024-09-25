@@ -1,51 +1,53 @@
-Apriori Algorithm Pseudo code
-    Input:
-        - filename: path to file containing transactions
-    Output:
-        - frequent itemsets with their support count
+Apriori Algorithm (Pseudo code)
 
-    1. Read the transaction data from 'filename'
-        - transactions = []
-        - For each line in file:
-            - split the line by spaces and append to transactions list
-        - total_transactions = len(transactions)
+Input: 
+  filename: the name of the transaction file
+  min_support: minimum support percentage (as a threshold)
 
-    2. Calculate the minimum support count
-        - min_support_count = (min_support_percentage / 100) * total_transactions
+1. Read the input file and convert it into a list of transactions
+    Initialize transactions as a list
+    For each line in the file:
+        Split the line into items
+        Add the list of items to transactions
 
-    3. Generate candidate itemsets of size 1 (C1)
-        - C1 = {}
-        - For each transaction in transactions:
-            - For each item in transaction:
-                - If item in C1:
-                    - Increment its count by 1
-                - Else:
-                    - Add item to C1 with count 1
+2. Calculate min_support_count:
+    min_support_count = (min_support / 100) * total number of transactions
 
-    4. Filter C1 to get frequent 1-itemsets (L1)
-        - L1 = {itemset: count for itemset, count in C1.items() if count >= min_support_count}
+3. Generate candidate 1-itemsets (C1):
+    Initialize C1 as an empty dictionary
+    For each transaction in transactions:
+        For each item in the transaction:
+            If item is already in C1:
+                Increment its count by 1
+            Else:
+                Add item to C1 with count 1
 
-    5. Initialize:
-        - k = 2 (for 2-itemsets and larger)
-        - frequent_itemsets = L1
+4. Prune C1 to create frequent 1-itemsets (L1):
+    Initialize L1 as an empty dictionary
+    For each itemset in C1:
+        If its count is greater than or equal to min_support_count:
+            Add it to L1
 
-    6. While Lk-1 is not empty:
-        - Generate candidate k-itemsets (Ck) from Lk-1:
-            - For each pair of frequent (k-1)-itemsets in Lk-1:
-                - Combine the two itemsets to form a candidate k-itemset
-                - Ensure the new candidate is of size k and is lexicographically ordered
-            - Ck = {}
+5. Initialize k = 2 (for generating larger itemsets)
 
-        - For each candidate itemset in Ck:
-            - Count the frequency in transactions:
-                - For each transaction:
-                    - If the candidate itemset is a subset of the transaction:
-                        - Increment the count of the candidate
+6. Repeat until no frequent itemsets can be generated:
+    a. Generate candidate k-itemsets (Ck) from L(k-1):
+        Ck = Join itemsets in L(k-1) (all pairs of frequent (k-1)-itemsets)
+        Prune Ck by removing any k-itemset that has an infrequent (k-1)-subset
 
-        - Filter Ck to get Lk (frequent k-itemsets):
-            - Lk = {itemset: count for itemset, count in Ck.items() if count >= min_support_count}
+    b. Count the support of each candidate k-itemset in Ck:
+        Initialize support counts for each k-itemset in Ck
+        For each transaction in transactions:
+            For each candidate itemset in Ck:
+                If candidate itemset is a subset of the transaction:
+                    Increment its count
 
-        - Add Lk to frequent_itemsets
-        - Increment k by 1
+    c. Prune Ck to create frequent k-itemsets (Lk):
+        Initialize Lk as an empty dictionary
+        For each itemset in Ck:
+            If its count is greater than or equal to min_support_count:
+                Add it to Lk
 
-    7. Output all frequent itemsets in frequent_itemsets 
+    d. Set L(k-1) = Lk and increment k by 1
+
+7. Output all frequent itemsets from L1, L2, ..., Lk
