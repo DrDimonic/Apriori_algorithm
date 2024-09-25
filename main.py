@@ -51,12 +51,13 @@ def apriori(filename, min_support):
 
 # Example usage
 if __name__ == "__main__":
+    try:
 
-    myapriori_filename = "transactions.txt"
-    min_support = float(input("Enter the minimum support percentage: "))
-    apriori('transactions.txt', min_support)
+        myapriori_filename = "transactions.txt"
+        min_support = float(input("Enter the minimum support percentage: "))
+        apriori(myapriori_filename, min_support)
 
-    #apriori('transactions.txt', 10)
-    #apriori('transactions.txt', 20)
-    #apriori('transactions.txt', 30)
-    #apriori('transactions.txt', 50)
+    except ValueError as e:
+        print(f"Invalid input for minimum support: {e}")
+
+
